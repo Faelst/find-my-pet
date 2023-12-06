@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,10 +17,24 @@ model Org {
   address       String
   whatsapp      String
   password_hash String
-
-  Pets Pet[]
+  city          String
+  state         String
+  Pets          Pet[]
 
   @@map("org")
+}
+
+model Pet {
+  id                 String                 @id @default(uuid())
+  name               String
+  about              String?
+  age                Dog_Age?
+  dog_size           Dog_Size
+  independence_level Dog_Independence_Level
+  environment        Dog_Environment
+  requirements       Json
+  orgId              String
+  Org                Org                    @relation(fields: [orgId], references: [id])
 }
 
 enum Dog_Size {
@@ -48,18 +59,4 @@ enum Dog_Environment {
   LARGE
   MEDIUM
   SMALL
-}
-
-model Pet {
-  id                 String                 @id @default(uuid())
-  name               String
-  about              String?
-  age                Dog_Age?
-  dog_size           Dog_Size
-  independence_level Dog_Independence_Level
-  environment        Dog_Environment
-  requirements       Json
-
-  Org   Org    @relation(fields: [orgId], references: [id])
-  orgId String
 }
