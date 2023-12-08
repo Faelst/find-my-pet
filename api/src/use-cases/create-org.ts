@@ -11,6 +11,8 @@ export interface CreateOrgUseCaseDto {
   whatsapp: string
   latitude: number
   longitude: number
+  city: string
+  state: string
 }
 
 interface CreatePetUseCaseResponse {
@@ -29,6 +31,8 @@ export class CreateOrgUseCase {
     longitude,
     password,
     whatsapp,
+    city,
+    state,
   }: CreateOrgUseCaseDto): Promise<CreatePetUseCaseResponse> {
     const password_hash = await hash(password, Number(process.env.SECRET_SALT))
 
@@ -41,6 +45,8 @@ export class CreateOrgUseCase {
       longitude,
       password_hash,
       whatsapp,
+      city,
+      state,
     })
 
     return { org }

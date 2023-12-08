@@ -22,6 +22,8 @@ describe('FetchPetByIdUseCase', () => {
       requirements: JSON.stringify({ abc: 'abc' }),
       about: 'something about dog',
       age: 'ELDERLY',
+      city: 'any_city',
+      state: 'any_state',
     })
 
     const petFindById = await sut.execute(pet.id)

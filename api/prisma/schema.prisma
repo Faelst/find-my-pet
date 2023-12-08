@@ -35,6 +35,7 @@ model Pet {
   requirements       Json
   orgId              String
   Org                Org                    @relation(fields: [orgId], references: [id])
+  avaible            Boolean
 }
 
 enum Dog_Size {
