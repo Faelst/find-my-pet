@@ -10,7 +10,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     const pet = {
       id: randomUUID(),
       name: data.name,
-      dog_size: data.environment,
+      dog_size: data.dog_size,
       environment: data.environment,
       independence_level: data.independence_level,
       requirements: JSON.stringify(data.requirements),
@@ -44,10 +44,12 @@ export class InMemoryPetsRepository implements PetsRepository {
     const pets = this.items
       .filter(
         (item) =>
-          query.dogAge === item.age ||
-          query.dogEnvironment === item.environment ||
-          query.dogIndependenceLevel === item.independence_level ||
-          query.dogSize === item.dog_size,
+          (!query.dogAge || query.dogAge === item.age) &&
+          (!query.dogEnvironment ||
+            query.dogEnvironment === item.environment) &&
+          (!query.dogIndependenceLevel ||
+            query.dogIndependenceLevel === item.independence_level) &&
+          (!query.dogSize || query.dogSize === item.dog_size),
       )
       .slice(((page === 1 ? 0 : page) - 1) * limit + 1, page * limit + 1)
 

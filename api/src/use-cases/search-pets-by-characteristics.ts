@@ -6,10 +6,10 @@ interface SearchPetsByCharacteristicsUseCaseResponse {
 }
 
 export type PetCharacteristics = {
-  dogSize: 'SMALL' | 'MEDIUM' | 'BIG'
-  dogAge: 'OLD' | 'MEDIUM' | 'ELDERLY'
-  dogIndependenceLevel: 'HIGH' | 'MEDIUM' | 'LOW'
-  dogEnvironment: 'LARGE' | 'MEDIUM' | 'SMALL'
+  dogSize?: 'SMALL' | 'MEDIUM' | 'BIG'
+  dogAge?: 'OLD' | 'MEDIUM' | 'ELDERLY'
+  dogIndependenceLevel?: 'HIGH' | 'MEDIUM' | 'LOW'
+  dogEnvironment?: 'LARGE' | 'MEDIUM' | 'SMALL'
 }
 
 export class SearchPetsByCharacteristicsUseCase {
@@ -19,7 +19,7 @@ export class SearchPetsByCharacteristicsUseCase {
     query: PetCharacteristics,
     page: number,
   ): Promise<SearchPetsByCharacteristicsUseCaseResponse> {
-    const pets = await this.petsRepository.searchMany(query, page)
+    const pets = await this.petsRepository.searchByCharacteristics(query, page)
 
     return {
       pets,
