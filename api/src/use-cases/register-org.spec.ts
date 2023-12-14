@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { CreateOrgUseCase, CreateOrgUseCaseDto } from './create-org'
+import { RegisterOrgUseCase, RegisterOrgUseCaseDto } from './register-org'
 import { InMemoryOrgsRepository } from '../repository/in-memory/orgs.repository'
 
-describe('CreateOrgUseCase', () => {
+describe('RegisterOrgUseCase', () => {
   let orgRepository: InMemoryOrgsRepository
-  let sut: CreateOrgUseCase
+  let sut: RegisterOrgUseCase
 
   const orgPayload = {
     name: 'Some Org',
@@ -15,11 +15,11 @@ describe('CreateOrgUseCase', () => {
     whatsapp: '(99) 99999 9999',
     latitude: -3.761916,
     longitude: -38.519214,
-  } as CreateOrgUseCaseDto
+  } as RegisterOrgUseCaseDto
 
   beforeEach(() => {
     orgRepository = new InMemoryOrgsRepository()
-    sut = new CreateOrgUseCase(orgRepository)
+    sut = new RegisterOrgUseCase(orgRepository)
   })
 
   it('should create user', async () => {

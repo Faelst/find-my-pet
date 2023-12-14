@@ -2,7 +2,7 @@ import { hash } from 'bcryptjs'
 import { Org } from '@prisma/client'
 import { OrgsRepository } from '../repository/org-repository'
 
-export interface CreateOrgUseCaseDto {
+export interface RegisterOrgUseCaseDto {
   address: string
   cep: string
   email: string
@@ -15,11 +15,11 @@ export interface CreateOrgUseCaseDto {
   state: string
 }
 
-interface CreatePetUseCaseResponse {
+interface RegisterOrgUseCaseResponse {
   org: Org
 }
 
-export class CreateOrgUseCase {
+export class RegisterOrgUseCase {
   constructor(private readonly orgsRepository: OrgsRepository) {}
 
   async execute({
@@ -33,7 +33,7 @@ export class CreateOrgUseCase {
     whatsapp,
     city,
     state,
-  }: CreateOrgUseCaseDto): Promise<CreatePetUseCaseResponse> {
+  }: RegisterOrgUseCaseDto): Promise<RegisterOrgUseCaseResponse> {
     const password_hash = await hash(password, Number(process.env.SECRET_SALT))
 
     const org = await this.orgsRepository.create({

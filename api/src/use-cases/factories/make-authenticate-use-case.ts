@@ -1,0 +1,7 @@
+import { PrismaOrgsRepository } from '../../repository/prisma/orgs.repository'
+import { AuthenticateUseCase } from '../authenticate'
+
+export function makeAuthenticateUseCase() {
+  const orgsRepository = new PrismaOrgsRepository()
+  return new AuthenticateUseCase(orgsRepository)
+}
