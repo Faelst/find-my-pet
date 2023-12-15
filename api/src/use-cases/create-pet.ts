@@ -38,6 +38,7 @@ export class CreatePetUseCase {
       environment,
       requirements,
       orgId,
+      avaible: true,
     })
 
     return { pet }

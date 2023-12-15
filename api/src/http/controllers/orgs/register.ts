@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { registerOrgSchemaBodyValidation } from '../../../lib/body-schema-validation/register-org'
+import { registerOrgSchemaBodyValidation } from '../../../lib/schema-validation/register-org'
 import { makeRegisterOrgUseCase } from '../../../use-cases/factories/make-register-use-case'
 import { UserAlreadyExistsError } from '../../../use-cases/errors/user-allready-exists.error'
 

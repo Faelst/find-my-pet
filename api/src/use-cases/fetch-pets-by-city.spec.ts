@@ -39,7 +39,7 @@ describe('FetchPetByIdUseCase', () => {
       state: 'SP',
     })
 
-    const petFindById = await sut.execute(pet1.city)
+    const petFindById = await sut.execute({ city: pet1.city })
 
     expect(petFindById).not.toBeNull()
     expect(petFindById.pets).toEqual(expect.objectContaining([pet1, pet2]))

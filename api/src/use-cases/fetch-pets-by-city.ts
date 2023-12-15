@@ -8,8 +8,14 @@ interface FetchPetsByCityUseCaseResponse {
 export class FetchPetsByCityUseCase {
   constructor(private readonly petsRepository: PetsRepository) {}
 
-  async execute(city: string): Promise<FetchPetsByCityUseCaseResponse> {
-    const pets = await this.petsRepository.findByCity(city)
+  async execute({
+    city,
+    page,
+  }: {
+    city: string
+    page?: number
+  }): Promise<FetchPetsByCityUseCaseResponse> {
+    const pets = await this.petsRepository.findByCity({ city, page })
 
     return {
       pets,

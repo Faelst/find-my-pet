@@ -10,13 +10,21 @@ export class PrismaPetsRepository implements PetsRepository {
     })
   }
 
-  findByCity(city: string): Promise<Pet[] | null> {
+  findByCity({
+    city,
+    page = 1,
+  }: {
+    city: string
+    page?: number
+  }): Promise<Pet[] | null> {
     return prisma.pet.findMany({
       where: {
         Org: {
           city,
         },
       },
+      take: 10,
+      skip: (page - 1) * 10,
     })
   }
 

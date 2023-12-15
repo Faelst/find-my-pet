@@ -30,10 +30,18 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet || null
   }
 
-  findByCity(city: string): Promise<Pet[] | null> {
-    const pets = this.items.filter((pet) => pet.city === city)
+  findByCity({
+    city,
+    page = 1,
+  }: {
+    city: string
+    page?: number
+  }): Promise<Pet[] | null> {
+    const pets = this.items
+      .filter((pet) => pet.city === city)
+      .slice(((page === 1 ? 0 : page) - 1) * 10 + 1, page * 10 + 1)
 
-    return pets || null
+    return pets as any
   }
 
   async searchByCharacteristics(
